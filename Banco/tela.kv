@@ -1,0 +1,321 @@
+ScreenManager:
+    Tela1:
+        name: "Tela1"
+        
+    Tela2:
+        name: "Tela2"
+    
+    Tela3:
+        name: "Tela3"
+        
+    Tela4:
+        name: "Tela4"
+        
+    Tela5:
+        name: "Tela5"
+        
+    Tela6:
+        name: "Tela6"
+
+<Tela1>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        
+        GridLayout:
+            cols: 1
+            padding: 10
+            spacing: 10
+            size_hint: None, None
+            width: 600
+    
+            Label:
+                text: "Bank Simulator"
+                font_size: 50
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+    
+            Label:
+                text: "Login"
+                font_size: 50
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+    
+            TextInput:
+                id: campo_usuario
+                hint_text: "Nome de usuário"
+                size_hint_y: None
+                height: 50
+                on_text: root.validar_login()
+    
+            TextInput:
+                id: campo_senha
+                hint_text: "Senha"
+                password: True
+                size_hint_y: None
+                height: 50
+    
+            Button:
+                id: butao_enviar
+                text: "Enviar"
+                size_hint_y: None
+                height: 50
+                disabled: False
+                on_press: root.logar()
+    
+            Button:
+                id: butao_criar_conta
+                text: "Criar conta"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela3"
+    
+            Label:
+                id: Erro
+                text: ""
+                font_size: 20
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+
+<Tela2>:
+    
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 6
+            spacing: 5
+
+            Label:
+                id: nome_usuario_label
+                text: "Nome do usuário:"
+                font_size: 30
+                size_hint_y: None
+                height: 50
+                
+            Label:
+                id: saldo_usuario
+                text: "Saldo: "
+                font_size: 25
+                size_hint_y: None
+                height: 40
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        GridLayout:
+            cols: 1
+            padding: 20
+            spacing: 10
+            size_hint: 0.8, None
+            height: self.minimum_height
+
+            Button:
+                text: "Transferir"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current =  "Tela4"
+
+            Button:
+                text: "Sacar"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela5"
+
+            Button:
+                text: "Depositar"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela6"
+
+            Button:
+                text: "Sair"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela1"
+
+<Tela3>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        GridLayout:
+            cols: 1
+            padding: 20
+            spacing: 10
+            size_hint: 0.8, None
+            height: self.minimum_height
+
+            Label:
+                text: "Criar nova conta"
+                font_size: 50
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50 
+
+            TextInput:
+                id: campo_novo_user
+                hint_text: "Nome da nova conta"
+                size_hint_y: None
+                height: 50 
+
+            Button:
+                text: "Criar conta"
+                size_hint_y: None
+                height: 50
+                on_press: root.criar_contas()                                       
+
+            Button:
+                text: "Voltar"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela1"
+
+            Label:
+                id: Msg
+                text: ""
+                font_size: 20
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+
+<Tela4>:  # Tela de Transferência
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        GridLayout:
+            cols: 1
+            padding: 20
+            spacing: 10
+            size_hint: None, None
+            width: 400
+
+            Label:
+                text: "Transferir Dinheiro"
+                font_size: 30
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+            
+            TextInput:
+                id: destinatario
+                hint_text: "Nome do destinatário"
+                size_hint_y: None
+                height: 50
+
+            TextInput:
+                id: valor_transferencia
+                hint_text: "Valor a transferir"
+                input_filter: 'float'
+                size_hint_y: None
+                height: 50
+
+            Button:
+                text: "Confirmar Transferência"
+                size_hint_y: None
+                height: 50
+                on_press: root.transferencia()
+
+            Button:
+                text: "Voltar"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela2"
+                
+            Label:
+                id: msg_erro_t
+                text: ""
+                color: 1, 0, 0, 1
+
+<Tela5>:  # Tela de Saque
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        GridLayout:
+            cols: 1
+            padding: 20
+            spacing: 10
+            size_hint: None, None
+            width: 400
+
+            Label:
+                text: "Sacar Dinheiro"
+                font_size: 30
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+            
+            TextInput:
+                id: valor_saque
+                hint_text: "Valor a sacar"
+                input_filter: 'float'
+                size_hint_y: None
+                height: 50
+
+            Button:
+                text: "Confirmar Saque"
+                size_hint_y: None
+                height: 50
+                on_press: root.saque()
+
+            Button:
+                text: "Voltar"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela2"
+                
+            Label:
+                id: msg_erro_s
+                text: ""
+                color: 1, 0, 0, 1
+
+<Tela6>:  # Tela de Depósito
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        GridLayout:
+            cols: 1
+            padding: 20
+            spacing: 10
+            size_hint: None, None
+            width: 400
+
+            Label:
+                text: "Depositar Dinheiro"
+                font_size: 30
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: 50
+            
+            TextInput:
+                id: valor_deposito
+                hint_text: "Valor a depositar"
+                input_filter: 'float'
+                size_hint_y: None
+                height: 50
+
+            Button:
+                text: "Confirmar Depósito"
+                size_hint_y: None
+                height: 50
+                on_press: root.deposito()
+                
+            Label:
+                id: msg_erros
+                text: " "
+                color: 1, 0, 0, 1
+
+            Button:
+                text: "Voltar"
+                size_hint_y: None
+                height: 50
+                on_press: app.root.current = "Tela2"
